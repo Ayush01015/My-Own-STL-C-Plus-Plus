@@ -59,7 +59,12 @@ public:
     int count(){
         return this->lastIndex+1;
     }
-    
+    int search(int item){
+        for(int i=0;i<=this->lastIndex;i++)
+            if(this->ptr[i]==item)
+                return i;
+            return -1;
+    }
 
 };
 int main(){
