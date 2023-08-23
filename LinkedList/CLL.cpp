@@ -146,16 +146,8 @@ int main(){
     l.insertAtFirst(999);
     l.insertAtFirst(8989);
     l.view();
-    node *s = l.searchNode(40);
-    l.insertAfter(s,555);
-    l.view();
-    l.deleteLastNode();
-    l.view();
-    node *s1 = l.searchNode(10);
-    int deletedData = l.deleteNode(s1);
-    cout<<"Deleted Node: "<<deletedData<<"\n";
-    l.view();
-    l.deleteFirstNode();
+    node *s = l.searchNode(60);
+    cout<<s->next->item<<endl;
     l.view();
     return 0;
 }
