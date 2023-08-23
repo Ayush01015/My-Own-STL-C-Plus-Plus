@@ -19,6 +19,25 @@ public:
         this->lastIndex = -1;
         this->ptr = new int[size];
     }
+    void view(){
+        cout<<"LastIndex: "<<lastIndex<<"\n";
+        for(int i=0;i<=this->lastIndex;i++){
+            cout<<this->ptr[i]<<" ";
+        }
+        cout<<endl;
+    }
+    void insert(int index,int data){
+        if(index<0 || index>lastIndex+1)
+            cout<<"Invalid Index\n";
+        else if(lastIndex == capacity-1)
+            cout<<"Array is Full\n";
+        else{
+            for(int i=lastIndex; i>=index; i--)
+                this->ptr[i+1] = ptr[i];
+            this->ptr[index] = data;
+            lastIndex++;
+        }
+    }
 };
 int main(){
     Array arr(5);
