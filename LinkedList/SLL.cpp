@@ -11,6 +11,7 @@ class SLL{
         node *start;
     public:
         SLL();
+        ~SLL();
         void view();
         void insertAtFirst(int);
         void insertAtLast(int);
@@ -22,6 +23,10 @@ class SLL{
 };
 SLL::SLL(){
     start = NULL;
+}
+SLL::~SLL(){
+    while(start)
+        deleteFirstNode();
 }
 void SLL::view(){
     if(start==NULL)
@@ -134,6 +139,8 @@ int main(){
     node *s1 = l.searchNode(10);
     int deletedData = l.deleteNode(s1);
     cout<<"Deleted Node: "<<deletedData<<"\n";
+    l.view();
+    l.deleteFirstNode();
     l.view();
     return 0;
 }
