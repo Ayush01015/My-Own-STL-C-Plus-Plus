@@ -16,6 +16,18 @@ class SLL{
         void insertAtLast(int);
         void insertAfter(node*,int);
 };
+void SLL::view(){
+    if(start==NULL)
+        cout<<"List is Empty\n";
+    else{
+        node *t = start;
+        while(t!=NULL){
+            cout<<t->item<<" ";
+            t=t->next;
+        }
+        cout<<endl;
+    }
+}
 void SLL::insertAtLast(int data){
     node *n = new node;
     node *t = start;
