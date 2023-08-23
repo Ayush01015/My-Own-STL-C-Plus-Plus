@@ -18,7 +18,7 @@ class SLL{
         node* searchNode(int);
         void deleteLastNode();
         void deleteFirstNode();
-        void deleteNode(node*);
+        node* deleteNode(node*);
 };
 SLL::SLL(){
     start = NULL;
@@ -86,6 +86,26 @@ void SLL :: deleteLastNode(){
         else
             start = NULL;
         delete t;
+    }
+}
+void SLL::deleteFirstNode(){
+    if(start == NULL)
+        cout<<"List is Empty\n";
+    else{
+        node *t = start;
+        start = t->next;
+        delete t;
+    }
+}
+node* SLL::deleteNode(node *r){
+    if(start == NULL)
+        cout<<"List is Empty\n";
+    else{
+        node *t = start;
+        while(r!=t->next)
+            t=t->next;
+        t->next = r->next;
+        delete r;
     }
 }
 int main(){
