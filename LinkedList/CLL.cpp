@@ -6,12 +6,12 @@ class node{
         int item;
         node *next;
 };
-class SLL{
+class CLL{
     private:
         node *start;
     public:
-        SLL();
-        ~SLL();
+        CLL();
+        ~CLL();
         void view();
         void insertAtFirst(int);
         void insertAtLast(int);
@@ -21,87 +21,99 @@ class SLL{
         void deleteFirstNode();
         int deleteNode(node*);
 };
-SLL::SLL(){
+CLL::CLL(){
     start = NULL;
 }
-SLL::~SLL(){
+CLL::~CLL(){
     while(start)
         deleteFirstNode();
 }
-void SLL::view(){
+void CLL::view(){
     if(start==NULL)
         cout<<"List is Empty\n";
     else{
         node *t = start;
-        while(t!=NULL){
+        do{
             cout<<t->item<<" ";
             t=t->next;
-        }
+        }while(t!=start);
         cout<<endl;
     }
 }
-void SLL::insertAtLast(int data){
+void CLL::insertAtLast(int data){
     node *n = new node;
     n->item = data;
-    n->next = NULL;
-    if(start == NULL)
+    if(start == NULL){
         start = n;
-    else{
+        n->next = n;
+    }else{
+        n->next = start;
         node *t = start;
-        while(t->next!=NULL)
+        while(t->next!=start)
             t=t->next;
         t->next = n;
     }
 }
-void SLL::insertAtFirst(int data){
+void CLL::insertAtFirst(int data){
     node *n = new node;
     n->item = data;
-    n->next = start;
+    if(start!=NULL){
+        node *t = start;
+        n->next = t;
+        while(t->next!=start)
+            t=t->next;
+        t->next = n;
+    }else
+        n->next = n;
     start = n;
 }
-void SLL::insertAfter(node *r,int data){
+void CLL::insertAfter(node *r,int data){
     node *n = new node;
     n->item = data; 
     n->next = r->next;
     r->next = n;
 }
-node* SLL :: searchNode(int data){
+node* CLL :: searchNode(int data){
     node *t = start;
-    while(t!=NULL){
+    do{
         if(t->item == data)
             return t;
         t = t->next;
-    }
+    }while(t!=start);
     cout<<"Node Not Found\n";
     return NULL;
 }
-void SLL :: deleteLastNode(){
+void CLL :: deleteLastNode(){
     if(start == NULL)
         cout<<"List is Empty\n";
     else{
         node *t = start;
         node *t1 = NULL;
-        while(t->next!=NULL){
+        while(t->next!=start){
             t1=t;
             t=t->next;
         }
         if(t1!=NULL)
-            t1->next = NULL;
+            t1->next = start;
         else
             start = NULL;
         delete t;
     }
 }
-void SLL::deleteFirstNode(){
+void CLL::deleteFirstNode(){
     if(start == NULL)
         cout<<"List is Empty\n";
     else{
         node *t = start;
-        start = t->next;
-        delete t;
+        node *r = start;
+        while(t->next!=start)
+            t=t->next;
+        t->next = start->next;
+        start = start->next;
+        delete r;
     }
 }
-int SLL::deleteNode(node *r){ 
+int CLL::deleteNode(node *r){ 
     //function to delete node and it also return deleted value
     node *t = start;
     if(start == NULL){
@@ -110,6 +122,9 @@ int SLL::deleteNode(node *r){
     }
     else if(start == r){
         start = r->next;
+        while(t->next!=start)
+            t=t->next;
+        t->next = start;
     }
     else{
         while(r!=t->next)
@@ -121,7 +136,7 @@ int SLL::deleteNode(node *r){
     return deletedValue;
 }
 int main(){
-    SLL l;
+    CLL l;
     l.insertAtLast(10);
     l.insertAtLast(20);
     l.insertAtLast(30);
@@ -129,6 +144,7 @@ int main(){
     l.insertAtLast(50);
     l.insertAtLast(60);
     l.insertAtFirst(999);
+    l.insertAtFirst(8989);
     l.view();
     node *s = l.searchNode(40);
     l.insertAfter(s,555);
