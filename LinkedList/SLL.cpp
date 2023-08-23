@@ -30,16 +30,28 @@ void SLL::view(){
 }
 void SLL::insertAtLast(int data){
     node *n = new node;
-    node *t = start;
     n->item = data;
     n->next = NULL;
     if(start == NULL)
         start = n;
     else{
+        node *t = start;
         while(n->next!=NULL)
             t=t->next;
         t->next = n;
     }
+}
+void SLL::insertAtFirst(int data){
+    node *n = new node;
+    n->item = data;
+    n->next = start;
+    start = n;
+}
+void SLL::insertAfter(node *r,int data){
+    node *n = new node;
+    n->item = data; 
+    n->next = r->next;
+    r->next = n;
 }
 int main(){
     
