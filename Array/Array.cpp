@@ -38,6 +38,17 @@ public:
             lastIndex++;
         }
     }
+    void remove(int index){
+        if(this->lastIndex == -1)
+            cout<<"Array is Empty\n";
+        else if(index<0 || index>lastIndex+1)
+            cout<<"Invalid Index\n";
+        else{
+            for(int i=index+1;i<=lastIndex;i++)
+                ptr[i-1] = ptr[i];
+            lastIndex--;
+        }
+    }
 };
 int main(){
     Array arr(5);
