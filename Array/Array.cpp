@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
@@ -49,17 +48,31 @@ public:
             lastIndex--;
         }
     }
+    int getElement(int index){
+        if(this->lastIndex == -1)
+            cout<<"Array is Empty\n";
+        else if(index<0 || index>lastIndex+1)
+            cout<<"Invalid Index\n";
+        else
+            return ptr[index];
+    }
+    int count(){
+        return this->lastIndex+1;
+    }
+    
+
 };
 int main(){
     Array arr(5);
-    // arr.CreateArray(10);
+    arr.CreateArray(5);
     arr.insert(0,10);
     arr.insert(1,20);
     arr.insert(2,30);
     arr.insert(3,40);
     arr.insert(4,50);
+    arr.insert(5,60);
     arr.view();
-    arr.remove(0); 
-    arr.view();
+    // arr.remove(3); 
+    // arr.view();
     return 0;
 }
