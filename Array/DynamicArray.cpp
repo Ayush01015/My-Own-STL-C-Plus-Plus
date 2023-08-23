@@ -65,7 +65,22 @@ public:
                 return i;
             return -1;
     }
-
+    void DoubleArray(){
+        capacity*=2;
+        int *temp = new int[capacity];
+        for(int i=0;i<=lastIndex;i++)
+            temp[i] = ptr[i];
+        delete []ptr;
+        ptr = temp;
+    }
+    void halfArray(){
+        capacity/=2;
+        int *temp = new int[capacity];
+        for(int i=0;i<=lastIndex;i++)
+            temp[i] = ptr[i];
+        delete []ptr;
+        ptr = temp;
+    }
 };
 int main(){
     Array arr(5);
