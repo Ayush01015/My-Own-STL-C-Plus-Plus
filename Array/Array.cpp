@@ -13,6 +13,10 @@ public:
         this->lastIndex = -1;
         this->ptr = new int[size];
     }
+    ~Array(){
+        delete this->ptr;
+        delete this;
+    }
     Array* CreateArray(int size){
         this->capacity = size;
         this->lastIndex = -1;

@@ -13,6 +13,10 @@ public:
         this->lastIndex = -1;
         this->ptr = new int[size];
     }
+    ~Array(){
+        delete this->ptr;
+        delete this;
+    }
     Array* CreateArray(int size){
         this->capacity = size;
         this->lastIndex = -1;
@@ -28,8 +32,11 @@ public:
     void insert(int index,int data){
         if(index<0 || index>lastIndex+1)
             cout<<"Invalid Index\n";
-        else if(lastIndex == capacity-1)
-            cout<<"Array is Full\n";
+        else if(lastIndex == capacity-1){
+            doubleArray();
+            ptr[index]=data;
+            lastIndex++;
+        }
         else{
             for(int i=lastIndex; i>=index; i--)
                 this->ptr[i+1] = ptr[i];
@@ -42,6 +49,8 @@ public:
             cout<<"Array is Empty\n";
         else if(index<0 || index>lastIndex+1)
             cout<<"Invalid Index\n";
+        else if(lastIndex+1 == capacity/2)
+            halfArray();
         else{
             for(int i=index+1;i<=lastIndex;i++)
                 ptr[i-1] = ptr[i];
@@ -65,7 +74,7 @@ public:
                 return i;
             return -1;
     }
-    void DoubleArray(){
+    void doubleArray(){
         capacity*=2;
         int *temp = new int[capacity];
         for(int i=0;i<=lastIndex;i++)
