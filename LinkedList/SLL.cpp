@@ -16,6 +16,9 @@ class SLL{
         void insertAtLast(int);
         void insertAfter(node*,int);
 };
+SLL::SLL(){
+    start = NULL;
+}
 void SLL::view(){
     if(start==NULL)
         cout<<"List is Empty\n";
@@ -54,6 +57,6 @@ void SLL::insertAfter(node *r,int data){
     r->next = n;
 }
 int main(){
-    
+    SLL l;
     return 0;
 }
