@@ -8,7 +8,7 @@ class node{
         node *next;
 };
 class DCLL{
-    private:
+    public:
         node *start;
     public:
         DCLL();
@@ -65,9 +65,10 @@ void DCLL::insertAtFirst(int data){
         n->prev = n; 
         n->next = n;
     }else{
+        n->next = start;
         n->prev = start->prev;
         start->prev->next = n;
-        n->next = start;
+        start->prev = n;
     }
         start = n;
 }
@@ -141,12 +142,10 @@ int DCLL::deleteNode(node *r){
         return -1;
     }
     else if(start == r){
-        r->next->prev = NULL;
+        start->prev->next = start->next;
+        start->next->prev = start->prev;
         start = r->next;
-    }else if(r->next == NULL){
-        r->prev->next = NULL;
-    }
-    else{
+    }else{
         r->next->prev = r->prev;
         r->prev->next = r->next;
     }
@@ -157,31 +156,9 @@ int DCLL::deleteNode(node *r){
 int main(){
     DCLL l;
     l.insertAtLast(10);
-    l.insertAtLast(20);
-    l.insertAtLast(30);
-    l.insertAtLast(40);
-    l.insertAtLast(50);
-    l.insertAtLast(60);
-    l.insertAtLast(70);
-    // l.deleteLastNode();
-    l.insertAtFirst(999);
-    l.insertAtFirst(998);
-    // l.view();
-    // node *t = l.searchNode(20);
-    // l.insertAfter(t,6969);
+    l.deleteLastNode();
     l.view();
-    l.viewRev();
-    // cout<<"::"<<l.start->next->item<<" ";
-    // l.insertAtFirst(90);
-    // l.insertAtLast(80);
-    // l.view();
-    // l.deleteFirstNode();
-    // l.deleteFirstNode();
-    // l.deleteLastNode();
-    // l.view();
-    // int data = l.deleteNode(t);
-    // l.view();
-    // cout<<data;
     return 0;
 }
+
 

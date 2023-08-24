@@ -1,2 +1,1 @@
-    l.deleteFirstNode();
-    l.view();
+item
