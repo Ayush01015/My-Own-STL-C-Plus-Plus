@@ -7,12 +7,12 @@ class node{
         int item;
         node *next;
 };
-class DLL{
+class DCLL{
     private:
         node *start;
     public:
-        DLL();
-        ~DLL();
+        DCLL();
+        ~DCLL();
         void view();
         void viewRev();
         void insertAtFirst(int);
@@ -23,14 +23,14 @@ class DLL{
         void deleteFirstNode();
         int deleteNode(node*);
 };
-DLL::DLL(){
+DCLL::DCLL(){
     start = NULL;
 }
-DLL::~DLL(){
+DCLL::~DCLL(){
     while(start)
         deleteFirstNode();
 }
-void DLL::view(){
+void DCLL::view(){
     if(start==NULL)
         cout<<"List is Empty\n";
     else{
@@ -42,7 +42,7 @@ void DLL::view(){
         cout<<endl;
     }
 }
-void DLL:: viewRev(){
+void DCLL:: viewRev(){
     if(start==NULL)
         cout<<"List is Empty\n";
     else{
@@ -58,7 +58,7 @@ void DLL:: viewRev(){
         cout<<endl;
     }
 }
-void DLL::insertAtFirst(int data){
+void DCLL::insertAtFirst(int data){
     node *n = new node;
     n->item = data;
     if(start == NULL){
@@ -71,7 +71,7 @@ void DLL::insertAtFirst(int data){
     }
         start = n;
 }
-void DLL::insertAtLast(int data){
+void DCLL::insertAtLast(int data){
     node *n = new node;
     n->item = data;
     if(start == NULL){
@@ -85,7 +85,7 @@ void DLL::insertAtLast(int data){
         start->prev = n;
     }
 }
-void DLL::insertAfter(node *r,int data){
+void DCLL::insertAfter(node *r,int data){
     node *n = new node;
     n->item = data;
     n->prev = r;
@@ -93,7 +93,7 @@ void DLL::insertAfter(node *r,int data){
     r->next->prev = n;
     r->next = n;
 }
-node* DLL :: searchNode(int data){
+node* DCLL :: searchNode(int data){
     node *t = start;
     do{
         if(t->item == data)
@@ -103,7 +103,7 @@ node* DLL :: searchNode(int data){
     cout<<"Node Not Found\n";
     return NULL;
 }
-void DLL::deleteLastNode(){
+void DCLL::deleteLastNode(){
     node *lastNode = start->prev;
     if(start == NULL){
         cout<<"List is Empty\n";
@@ -118,7 +118,7 @@ void DLL::deleteLastNode(){
         delete lastNode;
     }
 }
-void DLL::deleteFirstNode(){
+void DCLL::deleteFirstNode(){
     if(start == NULL)
         cout<<"List is Empty\n";
     else if(start->next == start){
@@ -133,7 +133,7 @@ void DLL::deleteFirstNode(){
         delete firstNode;
     }
 }
-int DLL::deleteNode(node *r){ 
+int DCLL::deleteNode(node *r){ 
     //function to delete node and it also return deleted value
     node *t = start;
     if(start == NULL){
@@ -155,7 +155,7 @@ int DLL::deleteNode(node *r){
     return deletedValue;
 }
 int main(){
-    DLL l;
+    DCLL l;
     l.insertAtLast(10);
     l.insertAtLast(20);
     l.insertAtLast(30);
