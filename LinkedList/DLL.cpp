@@ -8,7 +8,7 @@ class node{
         node *next;
 };
 class DLL{
-    public:
+    private:
         node *start;
     public:
         DLL();
