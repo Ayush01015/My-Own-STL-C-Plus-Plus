@@ -49,13 +49,12 @@ void DLL:: viewRev(){
         node *t = start;
         while(t->next!=NULL)
             t=t->next;
-            int x =0;
+            // int x =0;
         do{
             cout<<t->item<<" ";
             t=t->prev;
-            cout<<++x<<endl;
+            // cout<<++x<<endl;
         }while(t!=NULL);
-        // cout << ":::"<<start->next->prev << endl;
         cout<<endl;
     }
 }
@@ -79,6 +78,7 @@ void DLL::insertAtFirst(int data){
     n->item = data;
     n->next = start;
     n->prev = NULL;
+    start->prev = n;
     start = n;
 }
 void DLL::insertAfter(node *r,int data){
@@ -172,12 +172,13 @@ int main(){
     l.insertAtLast(70);
     // l.deleteLastNode();
     l.insertAtFirst(999);
+    l.insertAtFirst(998);
     // l.view();
     // node *t = l.searchNode(20);
     // l.insertAfter(t,6969);
     l.view();
     l.viewRev();
-    cout<<"::"<<l.start->item<<" ";
+    // cout<<"::"<<l.start->next->item<<" ";
     // l.insertAtFirst(90);
     // l.insertAtLast(80);
     // l.view();
@@ -190,3 +191,4 @@ int main(){
     // cout<<data;
     return 0;
 }
+
