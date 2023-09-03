@@ -6,32 +6,28 @@ class node{
         int item;
         node *next;
 };
-/*
-class SLL{
+class Stack{
     private:
         node *start;
-    public:
-        SLL();
-        ~SLL();
-        void view();
-        void insertAtFirst(int);
-        void insertAtLast(int);
-        void insertAfter(node*,int);
-        node* searchNode(int);
-        void deleteLastNode();
         void deleteFirstNode();
-        int deleteNode(node*);
+    public:
+        Stack();
+        ~Stack();
+        void view();
+        void push(int);
+        int pop();
+        int peek();
 };
-SLL::SLL(){
-    start = NULL;
+Stack::Stack(){
+    start=NULL;
 }
-SLL::~SLL(){
+Stack::~Stack(){
     while(start)
         deleteFirstNode();
 }
-void SLL::view(){
+void Stack::view(){
     if(start==NULL)
-        cout<<"List is Empty\n";
+        cout<<"Stack is Empty\n";
     else{
         node *t = start;
         while(t!=NULL){
@@ -41,45 +37,34 @@ void SLL::view(){
         cout<<endl;
     }
 }
-void SLL::insertAtLast(int data){
-    node *n = new node;
+void Stack::deleteFirstNode(){
+    if(start == NULL){
+        cout<<"Stack is Empty\n";
+        return;
+    }else{
+        node *t = start;
+        start = t->next;
+        delete t;
+    }
+}
+void Stack::push(int data){
+    node *n = new node();
     n->item = data;
     n->next = NULL;
-    if(start == NULL)
+    if(start == NULL){
         start = n;
-    else{
+    }else{
         node *t = start;
         while(t->next!=NULL)
             t=t->next;
         t->next = n;
     }
 }
-void SLL::insertAtFirst(int data){
-    node *n = new node;
-    n->item = data;
-    n->next = start;
-    start = n;
-}
-void SLL::insertAfter(node *r,int data){
-    node *n = new node;
-    n->item = data; 
-    n->next = r->next;
-    r->next = n;
-}
-node* SLL :: searchNode(int data){
-    node *t = start;
-    while(t!=NULL){
-        if(t->item == data)
-            return t;
-        t = t->next;
-    }
-    cout<<"Node Not Found\n";
-    return NULL;
-}
-void SLL :: deleteLastNode(){
-    if(start == NULL)
-        cout<<"List is Empty\n";
-    else{
+int Stack::pop(){
+    if(start == NULL){
+        cout<<"Stack is Empty\n";
+        return -1;
+    }else{
         node *t = start;
         node *t1 = NULL;
         while(t->next!=NULL){
@@ -90,55 +75,33 @@ void SLL :: deleteLastNode(){
             t1->next = NULL;
         else
             start = NULL;
+        int deletedItem = t->item;
         delete t;
+        return deletedItem;
     }
 }
-void SLL::deleteFirstNode(){
-    if(start == NULL)
-        cout<<"List is Empty\n";
-    else{
-        node *t = start;
-        start = t->next;
-        delete t;
-    }
-}
-int SLL::deleteNode(node *r){ 
-    //function to delete node and it also return deleted value
-    node *t = start;
+int Stack::peek(){
     if(start == NULL){
-        cout<<"List is Empty\n";
+        cout<<"Stack is Empty\n";
         return -1;
-    }
-    else if(start == r){
-        start = r->next;
-    }
-    else{
-        while(r!=t->next)
+    }else{
+        node *t = start;
+        while(t->next!=NULL)
             t=t->next;
-        t->next = r->next;
+        return t->item;
     }
-    int deletedValue = r->item;
-    delete r;
-    return deletedValue;
 }
-*/
-class Stack{
-    private:
-        node *start;
-    public:
-        Stack();
-        // ~Stack();
-        void view();
-        void push(int);
-        void pop();
-        int peek();
-        node* search(int);
-};
-Stack::Stack(){
-    start=NULL;
-}
-
 int main(){
-
+    Stack s;
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+    cout<<"Peek: "<<s.peek()<<endl;
+    s.view();
+    s.pop();
+    s.view();
+    cout<<"Peek: "<<s.peek()<<endl;
     return 0;
 }
