@@ -129,14 +129,15 @@ class Stack{
         Stack();
         // ~Stack();
         void view();
-        void insertAtFirst(int);
-        void insertAtLast(int);
-        void insertAfter(node*,int);
-        node* searchNode(int);
-        void deleteLastNode();
-        void deleteFirstNode();
-        int deleteNode(node*);
+        void push(int);
+        void pop();
+        int peek();
+        node* search(int);
 };
+Stack::Stack(){
+    start=NULL;
+}
+
 int main(){
 
     return 0;
