@@ -92,7 +92,13 @@ public:
         ptr = temp;
     }
 };
-
+class Stack:public Array{
+    public:
+        Stack(int);
+        void push(int);
+        int pop();
+        int peek();
+};
 
 int main(){
     
