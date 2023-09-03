@@ -91,6 +91,19 @@ public:
         delete []ptr;
         ptr = temp;
     }
+    bool isArrayFull(){
+        return lastIndex==capacity-1;
+    }
+    bool isArrayEmpty(){
+        return lastIndex==-1;
+    }
+    void append(int data){
+        if(lastIndex == capacity-1){
+            doubleArray();
+        }
+        lastIndex++;
+        ptr[lastIndex]=data;
+    } 
 };
 class Stack:public Array{
     public:
@@ -99,8 +112,37 @@ class Stack:public Array{
         int pop();
         int peek();
 };
-
+Stack::Stack(int cap):Array(cap){
+}
+void Stack::push(int data){
+    if(isArrayFull()){
+        doubleArray();
+    }
+    append(data);
+}
+int Stack::peek(){
+    if(count()==0){
+        cout<<"Stack is Empty\n";
+        return -1;
+    }
+    return getElement(count()-1);
+}
+int Stack::pop(){
+    if(isArrayEmpty()){
+        cout<<"Stack is Empty\n";
+        return -1;
+    }
+    remove(count()-1);
+    return getElement(count());
+}
 int main(){
-    
+    Stack s(5);
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+    s.push(60);
+    cout<<s.peek()<<"\n";
     return 0;
 }
