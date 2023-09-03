@@ -29,6 +29,14 @@ public:
         }
         cout<<endl;
     }
+    void append(int data){
+        if(lastIndex == capacity-1){
+            cout<<"Array is Full\n";
+            return;
+        }
+        lastIndex++;
+        ptr[lastIndex]=data;
+    }   
     void insert(int index,int data){
         if(index<0 || index>lastIndex+1)
             cout<<"Invalid Index\n";
@@ -78,28 +86,43 @@ public:
 
 };
 class Stack:public Array{
-    private:
-        int top;
     public:
         Stack(int);
         void push(int);
         int pop();
         int peek();
-        void view();
 };
-Stack::Stack(int data){
-    Array(data);
-    top=-1;
+Stack::Stack(int cap):Array(cap){
 }
 void Stack::push(int data){
     if(isArrayFull()){
         cout<<"Stack is Full\n";
         return;
     }
-    top++;
-    insert(top,data);
+    append(data);
+}
+int Stack::peek(){
+    if(count()==0){
+        cout<<"Stack is Empty\n";
+        return -1;
+    }
+    return getElement(count()-1);
+}
+int Stack::pop(){
+    if(isArrayEmpty()){
+        cout<<"Stack is Empty\n";
+        return -1;
+    }
+    remove(count()-1);
+    return getElement(count());
 }
 int main(){
-    
+    Stack s(5);
+    s.push(10);
+    s.push(20);
+    s.push(30);
+    s.push(40);
+    s.push(50);
+    cout<<s.peek();
     return 0;
 }

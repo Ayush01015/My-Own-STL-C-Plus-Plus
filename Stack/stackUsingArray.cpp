@@ -38,8 +38,10 @@ int Stack::pop(){
         cout<<"Stack is Empty\n";
         return -1;
     }
-    else
+    else{
         top--;
+        return ptr[top+1];
+    }
 }
 void Stack::view(){
     if(top==-1){
@@ -53,6 +55,9 @@ void Stack::view(){
 }
 int main(){
     Stack s(5);
+    s.push(10);
+    s.push(20);
+    s.push(30);
     
     
     
