@@ -108,6 +108,7 @@ public:
 class Stack:public Array{
     public:
         Stack(int);
+        ~Stack();
         void push(int);
         int pop();
         int peek();
