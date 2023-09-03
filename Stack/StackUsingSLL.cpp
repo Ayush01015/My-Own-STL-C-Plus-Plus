@@ -6,6 +6,7 @@ class node{
         int item;
         node *next;
 };
+/*
 class SLL{
     private:
         node *start;
@@ -120,6 +121,22 @@ int SLL::deleteNode(node *r){
     delete r;
     return deletedValue;
 }
+*/
+class Stack{
+    private:
+        node *start;
+    public:
+        Stack();
+        // ~Stack();
+        void view();
+        void insertAtFirst(int);
+        void insertAtLast(int);
+        void insertAfter(node*,int);
+        node* searchNode(int);
+        void deleteLastNode();
+        void deleteFirstNode();
+        int deleteNode(node*);
+};
 int main(){
 
     return 0;
