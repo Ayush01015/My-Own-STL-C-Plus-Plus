@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
+
 class Array{
 private:
     int capacity;
@@ -29,19 +30,14 @@ public:
         }
         cout<<endl;
     }
-    void append(int data){
-        if(lastIndex == capacity-1){
-            cout<<"Array is Full\n";
-            return;
-        }
-        lastIndex++;
-        ptr[lastIndex]=data;
-    }   
     void insert(int index,int data){
         if(index<0 || index>lastIndex+1)
             cout<<"Invalid Index\n";
-        else if(lastIndex == capacity-1)
-            cout<<"Array is Full\n";
+        else if(lastIndex == capacity-1){
+            doubleArray();
+            ptr[index]=data;
+            lastIndex++;
+        }
         else{
             for(int i=lastIndex; i>=index; i--)
                 this->ptr[i+1] = ptr[i];
@@ -54,6 +50,8 @@ public:
             cout<<"Array is Empty\n";
         else if(index<0 || index>lastIndex+1)
             cout<<"Invalid Index\n";
+        else if(lastIndex+1 == capacity/2)
+            halfArray();
         else{
             for(int i=index+1;i<=lastIndex;i++)
                 ptr[i-1] = ptr[i];
@@ -77,53 +75,26 @@ public:
                 return i;
             return -1;
     }
-    bool isArrayFull(){
-        return lastIndex==capacity-1;
+    void doubleArray(){
+        capacity*=2;
+        int *temp = new int[capacity];
+        for(int i=0;i<=lastIndex;i++)
+            temp[i] = ptr[i];
+        delete []ptr;
+        ptr = temp;
     }
-    bool isArrayEmpty(){
-        return lastIndex==-1;
+    void halfArray(){
+        capacity/=2;
+        int *temp = new int[capacity];
+        for(int i=0;i<=lastIndex;i++)
+            temp[i] = ptr[i];
+        delete []ptr;
+        ptr = temp;
     }
+};
 
-};
-class Stack:public Array{
-    public:
-        Stack(int);
-        void push(int);
-        int pop();
-        int peek();
-};
-Stack::Stack(int cap):Array(cap){
-}
-void Stack::push(int data){
-    if(isArrayFull()){
-        cout<<"Stack is Full\n";
-        return;
-    }
-    append(data);
-}
-int Stack::peek(){
-    if(count()==0){
-        cout<<"Stack is Empty\n";
-        return -1;
-    }
-    return getElement(count()-1);
-}
-int Stack::pop(){
-    if(isArrayEmpty()){
-        cout<<"Stack is Empty\n";
-        return -1;
-    }
-    remove(count()-1);
-    return getElement(count());
-}
+
 int main(){
-    Stack s(5);
-    s.push(10);
-    s.push(20);
-    s.push(30);
-    s.push(40);
-    s.push(50);
-    cout<<s.peek();
+    
     return 0;
 }
-
