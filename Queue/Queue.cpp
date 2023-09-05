@@ -62,9 +62,9 @@ void Queue::view(){
         cout<<endl;
     }else if(rear<front){
         for(int i=0;i<=rear;i++)
-            cout<<ptr[i];
+            cout<<ptr[i]<<" ";
         for(int i=front;i<=capacity-1;i++)
-            cout<<ptr[i];
+            cout<<ptr[i]<<" ";
     }else if(front<rear){
         for(int i = front;i<=rear;i++)
             cout<<ptr[i]<<" ";
@@ -72,19 +72,19 @@ void Queue::view(){
 }
 
 int Queue::deQueue(){
-    int deleteddata;
+    int deletedData = ptr[front];
     if(isQueueEmpty()){
         cout<<"Queue is Empty\n";
         return -1;
     }else if(rear==front){
+        this->front = -1;
         rear=-1;
-        front-1;
-        return ptr[front];
     }else if(front == capacity-1){
         front=0;
     }else{
         front++;
     }
+    return deletedData;
 }
 int Queue::count(){
     int count = 0;
@@ -107,6 +107,17 @@ int Queue::count(){
     return count;
 }
 int main(){
-    
+    Queue q(5);
+    q.enQueue(10);
+    q.enQueue(20);
+    q.enQueue(30);
+    q.enQueue(40);
+    q.enQueue(50);
+    q.view();
+    q.deQueue();
+    q.deQueue();
+    q.deQueue();
+    q.deQueue();
+    q.view();
     return 0;
 }
