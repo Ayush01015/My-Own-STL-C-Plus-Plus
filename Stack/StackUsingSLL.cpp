@@ -103,5 +103,6 @@ int main(){
     s.pop();
     s.view();
     cout<<"Peek: "<<s.peek()<<endl;
+
     return 0;
 }
