@@ -70,6 +70,22 @@ void Queue::view(){
             cout<<ptr[i]<<" ";
     }
 }
+
+int Queue::deQueue(){
+    int deleteddata;
+    if(isQueueEmpty()){
+        cout<<"Queue is Empty\n";
+        return -1;
+    }else if(rear==front){
+        rear=-1;
+        front-1;
+        return ptr[front];
+    }else if(front == capacity-1){
+        front=0;
+    }else{
+        front++;
+    }
+}
 int main(){
     
     return 0;
