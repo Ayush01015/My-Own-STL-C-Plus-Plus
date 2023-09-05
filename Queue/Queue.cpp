@@ -41,7 +41,16 @@ void Queue::enQueue(int data){
         ptr[rear] = data;
     }   
 }
-
+bool Queue::isQueueFull(){
+    if((rear == capacity-1 && front==0)||(rear<front && front-rear==1))
+        return true;
+    return false;
+}
+bool Queue::isQueueEmpty(){
+    if(rear==-1 && front==-1)
+        return true;
+    return false;
+}
 int main(){
     
     return 0;
