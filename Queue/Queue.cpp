@@ -51,6 +51,25 @@ bool Queue::isQueueEmpty(){
         return true;
     return false;
 }
+void Queue::view(){
+    if(isQueueEmpty()){
+        cout<<"Queue is Empty\n";
+    }else if(rear==front){
+            cout<<ptr[rear]<<" ";
+    }else if(isQueueFull()){
+        for(int i=0;i<=capacity-1;i++)
+            cout<<ptr[i]<<" ";
+        cout<<endl;
+    }else if(rear<front){
+        for(int i=0;i<=rear;i++)
+            cout<<ptr[i];
+        for(int i=front;i<=capacity-1;i++)
+            cout<<ptr[i];
+    }else if(front<rear){
+        for(int i = front;i<=rear;i++)
+            cout<<ptr[i]<<" ";
+    }
+}
 int main(){
     
     return 0;
