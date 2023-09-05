@@ -86,6 +86,26 @@ int Queue::deQueue(){
         front++;
     }
 }
+int Queue::count(){
+    int count = 0;
+    if(isQueueEmpty()){
+        count = 0;
+        cout<<"Queue is Empty\n";
+    }else if(rear==front){
+        count = 1;
+    }else if(isQueueFull()){
+        count = capacity;
+    }else if(rear<front){
+        for(int i=0;i<=rear;i++)
+            count++;
+        for(int i=front;i<=capacity-1;i++)
+            count++;
+    }else if(front<rear){
+        for(int i = front;i<=rear;i++)
+            count++;
+    }
+    return count;
+}
 int main(){
     
     return 0;
