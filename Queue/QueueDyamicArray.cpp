@@ -39,7 +39,9 @@ void Queue::enQueue(int data){
         rear=0;
         ptr[rear] = data;
     }else if(isQueueFull()){
-        cout<<"Queue is Full\n";
+        this->doubleArraySize();
+        rear++;
+        ptr[rear] = data;
     }else if(front>0 && rear == capacity-1){
         rear = 0;
         ptr[rear]=data;
@@ -78,7 +80,6 @@ void Queue::view(){
             cout<<ptr[i]<<" ";
     }
 }
-
 int Queue::deQueue(){
     int deletedData = ptr[front];
     if(isQueueEmpty()){
@@ -121,11 +122,8 @@ int main(){
     q.enQueue(30);
     q.enQueue(40);
     q.enQueue(50);
-    q.view();
-    q.deQueue();
-    q.deQueue();
-    q.deQueue();
-    q.deQueue();
+    q.enQueue(60);
+    cout<<q.count()<<endl;
     q.view();
     return 0;
 }
