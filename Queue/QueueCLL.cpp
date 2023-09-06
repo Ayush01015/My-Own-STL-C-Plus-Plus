@@ -135,6 +135,20 @@ int CLL::deleteNode(node *r){
     delete r;
     return deletedValue;
 }
+class Queue:public CLL {
+    private:
+        node *start;
+    public:
+        Queue();
+        void view();
+        void enQueue(int);
+        bool isQueueFull();
+        bool isQueueEmpty();
+        int deQueue();
+        int getRear();
+        int getFront();
+        int count();
+};
 int main(){
     
     return 0;
