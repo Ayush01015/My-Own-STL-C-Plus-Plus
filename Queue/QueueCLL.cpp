@@ -20,6 +20,8 @@ class CLL{
         void deleteLastNode();
         void deleteFirstNode();
         int deleteNode(node*);
+        bool isEmpty();
+        int count();
 };
 CLL::CLL(){
     start = NULL;
@@ -27,6 +29,25 @@ CLL::CLL(){
 CLL::~CLL(){
     while(start)
         deleteFirstNode();
+}
+bool CLL::isEmpty(){
+    if(start == NULL)
+        return true;
+    return false;
+}
+int CLL::count(){
+    int count = 0;
+    if(isEmpty()){
+        cout<<"List is Empty\n";
+        return -1;
+    }else{
+        node *t = start;
+        do{
+            count++;
+            t=t->next;
+        }while(t!=start);
+        return count;
+    }
 }
 void CLL::view(){
     if(start==NULL)
@@ -78,47 +99,43 @@ void CLL::deleteFirstNode(){
     }
 }
 class Queue:public CLL {
-    private:
-        node *start;
     public:
         Queue();
         ~Queue();
-        void view();
+        void viewQueue();
         void enQueue(int);
         void deQueue();
-        int count();
 };
 Queue::Queue():CLL(){
 }
 Queue::~Queue(){
-    while(start)
-        deleteFirstNode();
 }
 void Queue::enQueue(int data){ 
     this->insertAtLast(data);
 }
 void Queue::deQueue(){
-    if(start==NULL){
+    if(isEmpty()){
         cout<<"Queue is Empty\n";
         return;
     }
     this->deleteFirstNode();
 }
-int Queue::count(){
-    int count = 0;
-    if(start==NULL){
-        cout<<"List is Empty\n";
-        return -1;
-    }else{
-        node *t = start;
-        do{
-            count++;
-            t=t->next;
-        }while(t!=start);
-        return count;
+void Queue::viewQueue(){
+    if(isEmpty()){
+        cout<<"Queue is Empty\n";
+        return;
     }
+    else
+        view();
 }
 int main(){
-    
+    Queue q;
+    q.enQueue(10);
+    q.enQueue(20);
+    q.view();
+    q.deQueue();
+    q.deQueue();
+    q.deQueue();
+    q.view();
     return 0;
 }
