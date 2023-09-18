@@ -1,23 +1,23 @@
 #include <bits/stdc++.h>
 #include <iostream>
 using namespace std;
-class Array{
+class _Vector{
 private:
     int capacity;
     int lastIndex;
     int *ptr;
 public:
-    Array(){}
-    Array(int size){
+    _Vector(){}
+    _Vector(int size){
         this->capacity = size;
         this->lastIndex = -1;
         this->ptr = new int[size];
     }
-    ~Array(){
+    ~_Vector(){
         delete this->ptr;
         delete this;
     }
-    Array* CreateArray(int size){
+    _Vector* Create_Vector(int size){
         this->capacity = size;
         this->lastIndex = -1;
         this->ptr = new int[size];
@@ -29,15 +29,16 @@ public:
         }
         cout<<endl;
     }
+    bool _Vector::isFull()
+    {
+        return lastIndex==capacity-1;
+    }
     void insert(int index,int data){
         if(index<0 || index>lastIndex+1)
             cout<<"Invalid Index\n";
-        else if(lastIndex == capacity-1){
-            doubleArray();
-            ptr[index]=data;
-            lastIndex++;
-        }
         else{
+            if(isFull())
+                double_Vector();
             for(int i=lastIndex; i>=index; i--)
                 this->ptr[i+1] = ptr[i];
             this->ptr[index] = data;
@@ -46,11 +47,11 @@ public:
     }
     void remove(int index){
         if(this->lastIndex == -1)
-            cout<<"Array is Empty\n";
+            cout<<"_Vector is Empty\n";
         else if(index<0 || index>lastIndex+1)
             cout<<"Invalid Index\n";
-        else if(lastIndex+1 == capacity/2)
-            halfArray();
+        else if(lastIndex+1 >= capacity/2 && capacity>1)
+            half_Vector();
         else{
             for(int i=index+1;i<=lastIndex;i++)
                 ptr[i-1] = ptr[i];
@@ -59,7 +60,7 @@ public:
     }
     int getElement(int index){
         if(this->lastIndex == -1)
-            cout<<"Array is Empty\n";
+            cout<<"_Vector is Empty\n";
         else if(index<0 || index>lastIndex+1)
             cout<<"Invalid Index\n";
         else
@@ -74,7 +75,7 @@ public:
                 return i;
             return -1;
     }
-    void doubleArray(){
+    void double_Vector(){
         capacity*=2;
         int *temp = new int[capacity];
         for(int i=0;i<=lastIndex;i++)
@@ -82,7 +83,7 @@ public:
         delete []ptr;
         ptr = temp;
     }
-    void halfArray(){
+    void half_Vector(){
         capacity/=2;
         int *temp = new int[capacity];
         for(int i=0;i<=lastIndex;i++)
@@ -92,8 +93,8 @@ public:
     }
 };
 int main(){
-    Array arr(5);
-    arr.CreateArray(5);
+    _Vector arr(5);
+    arr.Create_Vector(5);
     arr.insert(0,10);
     arr.insert(1,20);
     arr.insert(2,30);
@@ -101,7 +102,7 @@ int main(){
     arr.insert(4,50);
     arr.insert(5,60);
     arr.view();
-    // arr.remove(3); 
+    arr.remove(3); 
     // arr.view();
     return 0;
 }

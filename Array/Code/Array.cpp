@@ -69,6 +69,25 @@ public:
                 return i;
             return -1;
     }
+    bool Array::isFull()
+    {
+        return lastIndex==capacity-1;
+    }
+    void Array::edit(int index,int data)
+    {
+        if(index>=0&&index<=lastIndex)
+            ptr[index]=data;
+    }
+    void Array::append(int data)
+    {
+        if(lastIndex==capacity-1)
+            cout<<endl<<"Array is already full";
+        else
+        {
+            lastIndex++;
+            ptr[lastIndex]=data;
+        }
+    }
 
 };
 int main(){
